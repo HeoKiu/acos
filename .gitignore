@@ -1,0 +1,13 @@
+env/
+venv/
+.env/
+.idea/
+*.pyc
+.venv/
+cmake-build-debug/
+*.out
+.git/
+*.o
+CMakeFiles/
+build/
+*.swp
