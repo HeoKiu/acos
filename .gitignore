@@ -1,5 +1,6 @@
 env/
 venv/
+environment/
 .env/
 .idea/
 *.pyc

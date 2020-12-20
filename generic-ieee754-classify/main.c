@@ -37,14 +37,18 @@ extern float_class_t classify(double *value_ptr) {
     uint16_t E = (b << SIGN_SIZE) >> (MANTISSA_SIZE + SIGN_SIZE);
     uint64_t M = (b << (EXP_SIZE + SIGN_SIZE)) >> (EXP_SIZE + SIGN_SIZE);
 
-    if (!E && !M && !S) return PlusZero;
-    if (!E && !M) return MinusZero;
-    if (E == MAX_EXPONENT && !M && !S) return PlusInf;
-    if (E == MAX_EXPONENT && !M) return MinusInf;
-    if (E == MAX_EXPONENT && M && !((M >> (MANTISSA_SIZE - SIGN_SIZE)) & LAST_BIT)) return SignalingNaN;
-    if (E == MAX_EXPONENT) return QuietNaN;
-    if (!E && !S) return PlusDenormal;
-    if (!E) return MinusDenormal;
-    if (!S) return PlusRegular;
-    return MinusRegular;
+    float_class_t result;
+
+    if (!E && !M && !S) result = PlusZero;
+    else if (!E && !M) result = MinusZero;
+    else if (E == MAX_EXPONENT && !M && !S) result = PlusInf;
+    else if (E == MAX_EXPONENT && !M) result = MinusInf;
+    else if (E == MAX_EXPONENT && M && !((M >> (MANTISSA_SIZE - SIGN_SIZE)) & LAST_BIT)) result = SignalingNaN;
+    else if (E == MAX_EXPONENT) result = QuietNaN;
+    else if (!E && !S) result = PlusDenormal;
+    else if (!E) result = MinusDenormal;
+    else if (!S) result = PlusRegular;
+    else result = MinusRegular;
+
+    return result;
 };

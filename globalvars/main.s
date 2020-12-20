@@ -1,4 +1,8 @@
 .data
+    .global R
+    R:
+        .space 4
+
 .text
 .global calculate
 
@@ -18,7 +22,8 @@ calculate:
     // r3 = C*D
     mul r3, r0, r1
     add r0, r2, r3
-    str [R], r0
+    ldr r1, .Lexterns+16
+    str r0, [r1]
     bx lr
 
 
@@ -27,3 +32,4 @@ calculate:
     .word B
     .word C
     .word D
+    .word R
