@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.17)
+project(inf18_2_posix_threads_ping_pong_threads_socketpair C)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(inf18_2_posix_threads_ping_pong_threads_socketpair main.c)

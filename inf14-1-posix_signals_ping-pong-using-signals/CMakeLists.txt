@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.17)
+project(inf14_1_posix_signals_ping_pong_using_signals C)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(inf14_1_posix_signals_ping_pong_using_signals main.c)
